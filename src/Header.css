@@ -1,0 +1,24 @@
+.Header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: #333334;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Header h1{
+  font-weight: normal;
+  text-transform: uppercase;
+  transform: perspective(200px) rotateX(20deg);
+}
+
+.Header__inputs label{
+  margin: 0 20px;
+}

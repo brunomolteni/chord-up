@@ -1,0 +1,44 @@
+.Keyboard{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transform: scale(1.5) perspective(100vw) rotateX(30deg);
+  margin-top: 50px;
+}
+
+.Keyboard__key{
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  display: block;
+  height: 100px;
+  width:20px;
+  margin-left: -5px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  line-height: 180px;
+  font-size: 10px;
+  text-align: center;
+  z-index: 1;
+}
+
+.Keyboard__key:not(.--sharp) + .Keyboard__key:not(.--sharp){
+  margin-left: 5px;
+}
+
+.Keyboard__key.--sharp{
+  height: 60px;
+  line-height: 100px;
+  background-color: black;
+  color: white;
+  z-index: 2;
+  transform: perspective(100vw) translate(0px, -20px) translateZ(100px);
+}
+
+.Keyboard__key.--playing{
+  animation: play 1s;
+}
+
+@keyframes play {
+  0%{background-color: red;}
+}
