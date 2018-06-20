@@ -2,8 +2,10 @@
   "name": "chord-up",
   "version": "1.0.0",
   "description": "Show notes from bitwig",
+  "main": "main.js",
   "scripts": {
-    "start": "node overwigger.server.js",
+    "start": "node overwigger.server.js && electron .",
+    "electron": "electron .",
     "watch": "parcel watch index.html"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
     "@babel/preset-env": "^7.0.0-beta.51",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-preact": "^1.1.0",
+    "electron": "^2.0.2",
     "fbemitter": "^2.1.1",
     "parcel-bundler": "^1.2.0",
     "webmidi": "^2.0.5"
