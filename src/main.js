@@ -2,27 +2,46 @@ import { h, render } from 'preact';
 import WebMidi from 'webmidi';
 import {EventEmitter} from 'fbemitter';
 
+import Primus from './primus.js';
 import App from './App';
 
-const DEBUG = true;
+const DEBUG = false;
 
 const setup = () => {
   window.EE = new EventEmitter();
-  window.log = DEBUG ? console.log : ()=>false;
+  window.log = DEBUG ? console.info : ()=>false;
+  window.primus = Primus.connect(document.location.url);
+
+  primus.on('data', function message(d) {
+    let splitted = d.split('}{');
+
+    let emitNote = d => {
+      var data = JSON.parse(d);
+      EE.emit('note',data);
+    }
+
+    if( splitted.length === 1 ){
+      emitNote(d)
+    }else if(splitted.length > 1 ){
+      splitted
+      .map( (el,i) => {
+        if(i !== 0) el = '{'+el;
+        if(i !== splitted.length-1 ) el+='}';
+        return el;
+      })
+      .forEach((d,i) => {
+        emitNote(d)
+      })
+    }
+  });
 }
 
 const mountNode = document.getElementById('app');
 const runApp = () => render(<App />, mountNode, mountNode.lastChild);
 
-WebMidi.enable(err => {
-  if (err) {
-    log("WebMidi could not be enabled.", err);
-  } else {
-    // Everything OK, setup and run the app
-    setup();
-    runApp();
-  }
-});
+
+setup();
+runApp();
 
 if (module.hot) {
   module.hot.dispose(function () {

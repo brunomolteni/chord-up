@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  transform: scale(1.5) perspective(100vw) rotateX(30deg);
+  transform: perspective(100vw) rotateX(30deg);
   margin-top: 50px;
 }
 
@@ -17,7 +17,7 @@
   color: black;
   border: 1px solid black;
   line-height: 180px;
-  font-size: 10px;
+  font-size: 8px;
   text-align: center;
   z-index: 1;
 }
@@ -34,11 +34,13 @@
   z-index: 2;
   transform: perspective(100vw) translate(0px, -20px) translateZ(100px);
 }
-
 .Keyboard__key.--playing{
-  animation: play 1s;
+  background-color: red;
+}
+.Keyboard__key.--released{
+  animation: release 1s;
 }
 
-@keyframes play {
+@keyframes release {
   0%{background-color: red;}
 }

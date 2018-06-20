@@ -1,13 +1,22 @@
 {
-  "name": "parcel-preact-example",
+  "name": "chord-up",
   "version": "1.0.0",
-  "description": "Simple Preact example",
+  "description": "Show notes from bitwig",
   "scripts": {
-    "start": "parcel index.html --open"
+    "start": "node overwigger.server.js",
+    "watch": "parcel watch index.html"
   },
   "dependencies": {
+    "engine.io": "^3.1.4",
+    "eruda": "^1.4.1",
+    "express": "^4.16.2",
     "preact": "^8.2.7",
-    "preact-compat": "^3.17.0"
+    "preact-compat": "^3.17.0",
+    "primus": "^7.1.0",
+    "primus.io": "^4.0.0",
+    "quick-local-ip": "^1.0.7",
+    "sockjs": "^0.3.19",
+    "ws": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
