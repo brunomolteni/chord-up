@@ -26,7 +26,6 @@
 }
 
 .Keyboard__key.--sharp{
-
   background-color: black;
   color: white;
   z-index: 2;
@@ -34,6 +33,8 @@
 }
 .Keyboard__key.--playing{
   background-color: red;
+  animation: play .5s;
+  animation-fill-mode: both;
 }
 .Keyboard__key.--released{
   animation: release 1s;
@@ -41,4 +42,7 @@
 
 @keyframes release {
   0%{background-color: red;}
+}
+@keyframes play {
+  0%{background-color: orange;}
 }

@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import './Keyboard.css';
 
-
 const OCTAVES = 5;
 const STARTING_OCTAVE = 1;
 
@@ -51,15 +50,18 @@ export default class ClassName extends Component {
     let note = getNote(data.key);
     if(note){
       let el = document.getElementById(note);
+      if(el && data.noteOn){
+        el.classList.remove('--released');
+        el.classList.remove('--playing');
+        void el.offsetWidth;
+        el.classList.add('--playing');
+      }
       if(el && !data.noteOn) {
         // re-trigger CSS animation
         el.classList.remove('--released');
         el.classList.remove('--playing');
         void el.offsetWidth;
         el.classList.add('--released');
-      }
-      if(el && data.noteOn){
-        el.classList.add('--playing');
       }
     }
 
