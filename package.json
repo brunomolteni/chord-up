@@ -4,7 +4,7 @@
   "description": "Show notes from bitwig",
   "main": "main.js",
   "scripts": {
-    "start": "node overwigger.server.js && electron .",
+    "start": "node overwigger.server.js",
     "electron": "electron .",
     "watch": "parcel watch index.html"
   },

@@ -45,11 +45,12 @@ export default class ClassName extends Component {
   }
 
   playNote = data => {
-    log(data);
 
     let note = getNote(data.key);
+    log(note);
+
     if(note){
-      let el = document.getElementById(note);
+      let el = document.getElementById(`track-${data.track}-${note}`);
       if(el && data.noteOn){
         el.classList.remove('--released');
         el.classList.remove('--playing');
@@ -64,14 +65,14 @@ export default class ClassName extends Component {
         el.classList.add('--released');
       }
     }
-
   }
 
-  render(props,{notes}){
+  render({color, track, base},{notes}){
+    let parsedColor = color && `rgba(${color.r},${color.g},${color.b},${color.a})`;
     return (
-      <div class="Keyboard">
+      <div class="Keyboard" id={'track-'+(base?'base':track)} style={{color: parsedColor}}>
         {notes.map(note =>(
-          <span id={note} class={`Keyboard__key ${note.indexOf('#')>-1 ? '--sharp' : ''}`}>{note}</span>
+          <span id={'track-'+(base?'base':track)+'-'+note} class={`Keyboard__key ${note.indexOf('#')>-1 ? '--sharp' : ''}`}>{base && note}</span>
         ))}
       </div>
     )

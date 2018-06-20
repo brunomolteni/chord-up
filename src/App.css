@@ -1,7 +1,7 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  height: 50px;
   padding: 0;
   margin: 0;
 }
@@ -11,8 +11,6 @@ body {
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  transform: scale(0.8);
-  height: 60px;
   overflow: hidden;
 }
 
@@ -23,9 +21,4 @@ main {
   align-items: center;
   width: 100%;
   height: 100%;
-}
-
-a{
-  text-decoration: none;
-  color: white;
 }

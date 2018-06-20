@@ -5,3 +5,4 @@ node_modules
 dist
 src/primus.js
 npm-debug.log
+package-lock.json

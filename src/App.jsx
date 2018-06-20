@@ -1,15 +1,27 @@
 import { h, Component } from 'preact';
-import WebMidi from 'webmidi';
 import './App.css';
 
-import Header from './Header';
 import Keyboard from './Keyboard';
 
 export default class App extends Component {
-  render(props,state) {
-    return (
+  state = {
+    channels: []
+  }
+
+  componentWillMount(){
+    EE.addListener('channels',this.setChannels);
+  }
+
+  setChannels = channels => {
+    log('channels',channels);
+    this.setState({channels});
+  }
+
+  render(props,{channels}) {
+    return channels.length && (
       <main>
-        <Keyboard/>
+        <Keyboard base/>
+        {channels.length && channels.map( (channel,i) => <Keyboard color={channel.color} track={channel.track}/>)}
       </main>
     );
   }

@@ -13,7 +13,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 900, height: 60,  frame: false, transparent: true, alwaysOnTop: true})
+  mainWindow = new BrowserWindow({width: 740, height: 40,  frame: false, transparent: true, alwaysOnTop: true})
 
 
   // mainWindow.setIgnoreMouseEvents(true, {forward: true});

@@ -15,13 +15,15 @@ const setup = () => {
   primus.on('data', function message(d) {
     let splitted = d.split('}{');
 
-    let emitNote = d => {
+    let setupEmitter = d => {
       var data = JSON.parse(d);
-      EE.emit('note',data);
+      log('Got Data:',data);
+      if(data.key)EE.emit('note',data);
+      if(data.channels)EE.emit('channels',data.channels);
     }
 
     if( splitted.length === 1 ){
-      emitNote(d)
+      setupEmitter(d)
     }else if(splitted.length > 1 ){
       splitted
       .map( (el,i) => {
@@ -30,7 +32,7 @@ const setup = () => {
         return el;
       })
       .forEach((d,i) => {
-        emitNote(d)
+        setupEmitter(d)
       })
     }
   });
