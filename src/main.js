@@ -1,16 +1,15 @@
 import { h, render } from 'preact';
-import WebMidi from 'webmidi';
 import {EventEmitter} from 'fbemitter';
 
 import Primus from './primus.js';
 import App from './App';
 
-const DEBUG = false;
+const DEBUG = true;
 
 const setup = () => {
   window.EE = new EventEmitter();
   window.log = DEBUG ? console.info : ()=>false;
-  window.primus = Primus.connect(document.location.url);
+  window.primus = Primus.connect("0.0.0.0:8888");
 
   primus.on('data', function message(d) {
     let splitted = d.split('}{');

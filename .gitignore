@@ -3,6 +3,6 @@ yarn-error.log
 node_modules
 .cache
 dist
-src/primus.js
 npm-debug.log
 package-lock.json
+release-builds

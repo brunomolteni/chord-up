@@ -1,12 +1,15 @@
 {
   "name": "chord-up",
+  "productName": "Overwigger",
   "version": "1.0.0",
   "description": "Show notes from bitwig",
   "main": "main.js",
   "scripts": {
-    "start": "node overwigger.server.js",
-    "electron": "electron .",
-    "watch": "parcel watch index.html"
+    "start": "node server.js",
+    "electron": "parcel build index.html && electron .",
+    "watch": "parcel watch index.html",
+    "build": "parcel build index.html",
+    "package": "electron-packager . overwigger --overwrite --platform=win32 --arch=ia32 --out=release-builds"
   },
   "dependencies": {
     "engine.io": "^3.1.4",
@@ -18,7 +21,8 @@
     "primus.io": "^4.0.0",
     "quick-local-ip": "^1.0.7",
     "sockjs": "^0.3.19",
-    "ws": "^3.3.2"
+    "ws": "^3.3.2",
+    "fbemitter": "^2.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
@@ -27,8 +31,8 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-preact": "^1.1.0",
     "electron": "^2.0.2",
-    "fbemitter": "^2.1.1",
-    "parcel-bundler": "^1.2.0",
-    "webmidi": "^2.0.5"
+    "electron-packager": "^12.1.0",
+    "electron-rebuild": "^1.7.3",
+    "parcel-bundler": "^1.9.2"
   }
 }
