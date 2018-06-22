@@ -1,13 +1,14 @@
 # OverWigger
+![Screenshot](screenshot.png)
 ## Tool for visualizing all playing notes from bitwig clips
 
-This is a personal project, the idea behind this app is to have a visual representation of the notes being played on every clip of your song ( while you can look at the notes being played if you have open the touch keyboard, it only shows one track and the layout is different to a normal piano)
+this is a small app that you can drag to any part of the screen, it stays active over bitwig, and gives you a visual representation of the notes being played on every clip of your song.
 
 ### setup
 
 - First you need to locate the Bitwig Studio controller folder and copy the "OverWigger" folder into there
 - Then you need to run the version of the app for your platform ( you can find it in the zips inside the "build" folder)
-- That's it!
+- That's it, drag the app to the top of the screen so it doesn't block anything else, you're done!
 
 ### Tools used
 
