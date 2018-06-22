@@ -1,21 +1,18 @@
 var express = require('express')
   , Primus = require('primus')
   , http = require('http')
-  , app = express()
-  , server = http.createServer(app)
-  , Bundler = require("parcel-bundler");
+  , path = require('path')
+  , net = require('net')
+  , utils = require("./utils");
 
-  var myip = require('quick-local-ip');
-  var net = require('net');
+var browser, app, server, primus, bitwig, reconnect, isBitwigConnected = false;
 
 
 // ------------------------- UTILS ----------------------------------
 
 var utils = require("./utils");
 
-function sendToBitwig(data){
-  if(isBitwigConnected) bitwig.write( JSON.stringify(data).getBytes() );
-}
+// ------------------------- SERVER TO BITWIG ----------------------------------
 
 function sendToBrowser(data){
   if(primus && primus.write) primus.write(data);
@@ -46,35 +43,34 @@ function connectToBitwig(){
   });
 }
 
-// ------------------------- SERVER TO BITWIG ----------------------------------
-
-var reconnect = net.connect.bind(this,{port: 42000, localAddress: '127.0.0.1', localPort: 51000});
-var bitwig;
-isBitwigConnected = false;
-connectToBitwig();
-
 // ------------------------- SERVER TO BROWSER ---------------------------------
+function sendToBitwig(data){
+  if(isBitwigConnected) bitwig.write( JSON.stringify(data).getBytes() );
+}
 
-var primus = new Primus(server, {transformer: 'websockets'});
-var browser;
+function connectToBrowser() {
+  primus.on('connection', function (spark) {
+    browser = spark;
+    sendToBitwig({init: true});
 
-primus.on('connection', function (spark) {
-  browser = spark;
-  sendToBitwig({init: true});
-
-  spark.on('data', function message(data) {
-    utils.log('got data from Browser: \n',data, '\n');
-    sendToBitwig(data);
+    spark.on('data', function message(data) {
+      utils.log('got data from Browser: \n',data, '\n');
+      sendToBitwig(data);
+    });
   });
-});
+}
 
 // ------------------------- START SERVER ---------------------------------
 
-primus.save(__dirname +'/src/primus.js');
-const file = 'index.html';
-const bundler = new Bundler(file, {});
+reconnect = net.connect.bind(this,{port: 42000, localAddress: '127.0.0.1', localPort: 51000});
+app = express()
+server = http.createServer(app);
+primus = new Primus(server, {transformer: 'websockets'});
 
-app.use(bundler.middleware());
+connectToBitwig();
+connectToBrowser();
 
-// start server
+var publicPath = path.join(__dirname, 'dist');
+app.use('/', express.static(publicPath));
+
 server.listen(8888,'0.0.0.0');
