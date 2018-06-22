@@ -4,7 +4,7 @@ import {EventEmitter} from 'fbemitter';
 import Primus from './primus.js';
 import App from './App';
 
-const DEBUG = true;
+const DEBUG = false;
 
 const setup = () => {
   window.EE = new EventEmitter();

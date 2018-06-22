@@ -1,10 +1,10 @@
 
 // ------------------------- UTILS ----------------------------------
 
-var SILENT = true;
+var DEBUG = false;
 
 function log(){
-  SILENT || console.log.apply(this,arguments);
+  DEBUG || console.log.apply(this,arguments);
 }
 
 function getNetworkIP(callback) {
