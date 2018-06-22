@@ -6,12 +6,14 @@
   "main": "main.js",
   "scripts": {
     "start": "node server.js",
-    "electron": "parcel build index.html && electron .",
+    "electron": "npm run build && electron .",
     "watch": "parcel watch index.html",
     "build": "parcel build index.html",
-    "package": "electron-packager . --overwrite --asar --out=build -platform=all"
+    "zip": "bestzip build/linux-arm64.zip build/Overwigger-linux-arm64/ && bestzip build/linux-armv7l.zip build/Overwigger-linux-armv7l/ && bestzip build/linux-ia32.zip build/Overwigger-linux-ia32/ && bestzip build/linux-x64.zip build/Overwigger-linux-x64/ && bestzip build/win-ia32.zip build/Overwigger-win32-ia32/ && bestzip build/win-x64.zip build/Overwigger-win32-x64/",
+    "package": "npm run build && electron-packager . --overwrite --asar --out=build --all --prune --icon=icon.ico && npm run zip"
   },
   "dependencies": {
+    "bestzip": "^1.1.4",
     "electron-debug": "^2.0.0",
     "engine.io": "^3.1.4",
     "eruda": "^1.4.1",
