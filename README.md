@@ -1,8 +1,8 @@
 # OverWigger
 ![Screenshot](screenshot.png)
-## Tool for visualizing all playing notes from bitwig clips
+## Companion App for Bitwig Studio that visualizes all notes from playing clips. 
 
-this is a small app that you can drag to any part of the screen, it stays active over bitwig, and gives you a visual representation of the notes being played on every clip of your song.
+this is a small companion app for Bitwig Studio that you can drag to any part of the screen, it stays active over Bitwig, and gives you a visual representation of the notes being played on every clip of your song.
 
 ### setup
 
