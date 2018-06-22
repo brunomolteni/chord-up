@@ -11,6 +11,7 @@ const setup = () => {
   window.log = DEBUG ? console.info : ()=>false;
   window.primus = Primus.connect("0.0.0.0:8888");
 
+  // DETUP HANDLER FOR DATA FROM BITWIG
   primus.on('data', function message(d) {
     let splitted = d.split('}{');
 
@@ -37,18 +38,14 @@ const setup = () => {
   });
 }
 
+// MOUNT APP
 const mountNode = document.getElementById('app');
 const runApp = () => render(<App />, mountNode, mountNode.lastChild);
-
 
 setup();
 runApp();
 
 if (module.hot) {
-  module.hot.dispose(function () {
-    // El módulo está a punto de ser reemplazado
-  });
-
   module.hot.accept(function () {
     runApp();
   });
