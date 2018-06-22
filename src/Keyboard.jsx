@@ -1,8 +1,8 @@
 import { h, Component } from 'preact';
 import './Keyboard.css';
 
-const OCTAVES = 5;
-const STARTING_OCTAVE = 1;
+const OCTAVES = 6;
+const STARTING_OCTAVE = 0;
 
 const octave = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 
@@ -39,9 +39,8 @@ export default class ClassName extends Component {
     EE.removeAllListeners('note');
   }
 
-  shouldComponentUpdate() {
-    // do not re-render via diff:
-    return false;
+  shouldComponentUpdate(nextProps) {
+    return nextProps.color !== this.props.color;
   }
 
   playNote = data => {
@@ -68,7 +67,8 @@ export default class ClassName extends Component {
   }
 
   render({color, track, base},{notes}){
-    let parsedColor = color && `rgba(${color.r},${color.g},${color.b},${color.a})`;
+    log('render');
+    let parsedColor = color && `rgba(${color.r},${color.g},${color.b},255)`;
     return (
       <div class="Keyboard" id={'track-'+(base?'base':track)} style={{color: parsedColor}}>
         {notes.map(note =>(

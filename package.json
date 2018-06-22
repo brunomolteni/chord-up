@@ -9,20 +9,21 @@
     "electron": "parcel build index.html && electron .",
     "watch": "parcel watch index.html",
     "build": "parcel build index.html",
-    "package": "electron-packager . overwigger --overwrite --platform=win32 --arch=ia32 --out=release-builds"
+    "package": "electron-packager . --overwrite --asar --out=build -platform=all"
   },
   "dependencies": {
+    "electron-debug": "^2.0.0",
     "engine.io": "^3.1.4",
     "eruda": "^1.4.1",
     "express": "^4.16.2",
+    "fbemitter": "^2.1.1",
     "preact": "^8.2.7",
     "preact-compat": "^3.17.0",
     "primus": "^7.1.0",
     "primus.io": "^4.0.0",
     "quick-local-ip": "^1.0.7",
     "sockjs": "^0.3.19",
-    "ws": "^3.3.2",
-    "fbemitter": "^2.1.1"
+    "ws": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
@@ -30,7 +31,7 @@
     "@babel/preset-env": "^7.0.0-beta.51",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-preact": "^1.1.0",
-    "electron": "^2.0.2",
+    "electron": "2.0.2",
     "electron-packager": "^12.1.0",
     "electron-rebuild": "^1.7.3",
     "parcel-bundler": "^1.9.2"

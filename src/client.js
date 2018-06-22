@@ -20,6 +20,7 @@ const setup = () => {
       log('Got Data:',data);
       if(data.key)EE.emit('note',data);
       if(data.channels)EE.emit('channels',data.channels);
+      if(data.color)EE.emit('color', data);
     }
 
     if( splitted.length === 1 ){

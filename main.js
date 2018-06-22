@@ -1,8 +1,6 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const {app, Menu, Tray, BrowserWindow} = require('electron');
+
+require('electron-debug')({showDevTools:false});
 
 const path = require('path')
 const url = require('url')
@@ -70,25 +68,31 @@ function connectToBrowser() {
 let mainWindow
 
 function createWindow () {
+  tray = new Tray(path.join(__dirname,'icon.ico'));
+  const contextMenu = Menu.buildFromTemplate([
+    {label: 'Reload', click: () => mainWindow.reload() },
+    {label: 'Exit', click: () => app.quit() },
+  ])
+  tray.setContextMenu(contextMenu);
+  tray.on('click', () => tray.popUpContextMenu(contextMenu));
   // ------------------------- START SERVER ---------------------------------
 
   reconnect = net.connect.bind(this,{port: 42000, localAddress: '127.0.0.1', localPort: 51000});
   serverApp = express()
   server = http.createServer(serverApp);
   primus = new Primus(server, {transformer: 'websockets'});
-  //
+
   connectToBitwig();
   connectToBrowser();
-  // primus.save(__dirname +'/src/primus.js');
-  // const bundler = new Bundler('index.html', {});
-  // serverApp.use(bundler.middleware());
-  serverApp.use('/', express.static('dist'));
-  // start server
+
+  var publicPath = path.join(__dirname, 'dist');
+  serverApp.use('/', express.static(publicPath));
+
   server.listen(8888,'0.0.0.0');
 
 
   // ------------------------- CREATE WINDOW ---------------------------------
-  mainWindow = new BrowserWindow({width: 740, height: 40,  frame: false, transparent: true, alwaysOnTop: true})
+  mainWindow = new BrowserWindow({width: 880, height: 40,  frame: false, transparent: true, alwaysOnTop: true, skipTaskbar: true})
 
 
   // mainWindow.setIgnoreMouseEvents(true, {forward: true});
