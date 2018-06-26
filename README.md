@@ -9,7 +9,7 @@ this is a small companion app for Bitwig Studio that you can drag to any part of
 Download the [zip](https://github.com/brunomolteni/overwigger/archive/master.zip) or clone this repo on your machine
 once that's done you need to do the following:
 
-- copy the OverWigger folder into your controllers folder ( here is some instructions from bitwig )
+- copy the OverWigger folder into your controllers folder, making sure to include all 3 files inside ( [here](https://www.bitwig.com/en/community/control_scripts/installation_guide) is some instructions from bitwig on how to install controller scripts )
 - go into the build folder and you should unzip the version for your system ( windows 32 / 64 bits, or different builds for linux, Im working on making a OSX version available soon )
 - go inside the extracted folder and you should have an .exe or equivalent for your system, which you just run, and you should get the app shown on the screen.
 - you should open bitwig, and go into settings > controllers, and click the button for "add controller manually" you should see Brumo > OverWigger
